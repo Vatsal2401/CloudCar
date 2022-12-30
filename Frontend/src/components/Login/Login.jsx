@@ -5,6 +5,12 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import img1 from '../images/img1.jpg'
 const Login = (props) => {
+  const googleAuth = () => {
+		window.open(
+			`http://localhost:3006/auth/google`,
+			"_self"
+		);
+	};
   const initialCredential={
     username:"",
     password:""
@@ -76,7 +82,7 @@ const Login = (props) => {
 </div> */}
 <div className="d-flex justify-content-center my-6"><button type="submit" className="btn  btn-outline-dark ">Login</button></div>
 <div className='my-3 row'><h6 className='col-md-6'>Not Registered?</h6> <Link className={`nav-link col-md-6`} aria-current="page" to="/SignUp">SignUp</Link> </div>
-<button><a href='https://localhost:3006/auth'>Login With Google</a></button>
+<button onClick={googleAuth}>Login With Google</button>
 </form>
 
 

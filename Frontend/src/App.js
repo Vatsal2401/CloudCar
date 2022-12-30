@@ -4,12 +4,31 @@ import Navbar from "./components/Navbar/Navbar"
 import Login from "./components/Login/Login"
 import Signup from "./components/SignUp/Signup"
 import Contact from "./components/contact/Contact"
+import axios from "axios";
 // import CarDetails from "./components/CarDetails/Cardetails"
 import Car from "./components/Car/Car"
 import Footer from "./components/Footer/Footer"
 import { BrowserRouter as Router,Switch, Route} from 'react-router-dom';
 import Cardetails from "./components/CarDetails/Cardetails"
+import { useEffect } from "react"
 function App() {
+  const [user, setUser] = useState(null);
+
+	const getUser = async () => {
+		try {
+			const url = `http://localhost:3006/auth/login/success`;
+			const { data } = await axios.get(url, { withCredentials: true });
+			setUser(data.user._json);
+      console.log(data.user._json);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	useEffect(() => {
+		getUser();
+	}, []);
+
   const [alert, setAlert] = useState(null)
   const showAlert =(message,type)=>{
     setAlert({
